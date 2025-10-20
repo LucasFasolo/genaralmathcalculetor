@@ -1,0 +1,26 @@
+.caixa-flex{ /*Define a classe de estilo "caixa-flex*/
+
+  display: flex;
+  align-items: center; /*Centraliza o conteúdo na vertical*/
+  justify-content: center; /*Centraliza o conteúdo na horizontal*/
+  height: 100vh;    /* Define o tamanho da caixa. Neste caso a tela inteira visível.*/ 
+  flex-direction: column;   /* Define o padrão de ordem dos containers dentro desta caixa como uma matrix i x 1*/ 
+
+}
+
+h1{ /*Define o estilo de todos parágrafos h1*/
+
+  font-family: Georgia, Arial;    /* Define qual fonte é usada*/ 
+
+}
+
+#botao{/*Define o estilo do id "botao"*/
+
+  font-family: Georgia;   /* Define qual fonte é usada*/ 
+  font-size: 50px;   /* Define o tamanho da fonte*/
+  font-weight: bold; /* Aplica negrito à fonte*/
+  padding: 10px 20px;  /* Aplica espaçamento entre o texto e a borda do botão respectivamente na horizontal e vertical*/
+  background-color: #f5ed0e; /* Define a cor de fundo do botão*/
+  border-radius: 15px; /* Aplica borda ao botão*/
+  cursor:crosshair;   /* Muda a aparência do cursor do mouse quando estiver em cima da área clicável do botão*/
+}

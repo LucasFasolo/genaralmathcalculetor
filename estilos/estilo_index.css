@@ -1,26 +1,132 @@
 .caixa-flex{ /*Define a classe de estilo "caixa-flex*/
 
-  display: flex;
-  align-items: center; /*Centraliza o conteúdo na vertical*/
-  justify-content: center; /*Centraliza o conteúdo na horizontal*/
   height: 100vh;    /* Define o tamanho da caixa. Neste caso a tela inteira visível.*/ 
   flex-direction: column;   /* Define o padrão de ordem dos containers dentro desta caixa como uma matrix i x 1*/ 
 
 }
-
-h1{ /*Define o estilo de todos parágrafos h1*/
-
-  font-family: Georgia, Arial;    /* Define qual fonte é usada*/ 
-
+/* Barra superior fixa */
+.barra-superior {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0 20px;
 }
 
-#botao{/*Define o estilo do id "botao"*/
+/* Container principal */
+.container-principal {
+  display: flex;
+  padding-top: 70px;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
 
-  font-family: Georgia;   /* Define qual fonte é usada*/ 
-  font-size: 50px;   /* Define o tamanho da fonte*/
-  font-weight: bold; /* Aplica negrito à fonte*/
-  padding: 10px 20px;  /* Aplica espaçamento entre o texto e a borda do botão respectivamente na horizontal e vertical*/
-  background-color: #f5ed0e; /* Define a cor de fundo do botão*/
-  border-radius: 15px; /* Aplica borda ao botão*/
-  cursor:crosshair;   /* Muda a aparência do cursor do mouse quando estiver em cima da área clicável do botão*/
+/* Menu lateral */
+.menu-lateral {
+  width: 200px;
+  background-color: #343a40;
+  color: white;
+  padding: 20px;
+  min-height: calc(100vh - 70px);
+  transition: all 0.3s ease;
+}
+
+.menu-lateral h1 {
+  font-size: 1.5rem;
+}
+
+.menu-lateral .botoes-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.menu-lateral button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.menu-lateral button:hover {
+  background-color: #0056b3;
+}
+
+/* Conteúdo principal */
+.conteudo-principal {
+  flex-grow: 1;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+/* RESPONSIVO */
+@media (max-width: 1024px) {
+  .menu-lateral {
+    width: 150px;
+    padding: 15px;
+  }
+  .menu-lateral button {
+    font-size: 14px;
+    padding: 8px;
+  }
+  .conteudo-principal {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-principal {
+    flex-direction: column;
+  }
+
+  .menu-lateral {
+    width: 100%;
+    min-height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .menu-lateral .botoes-menu {
+    flex-direction: row;
+    gap: 5px;
+    margin-top: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .menu-lateral button {
+    flex: 1 1 auto;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .conteudo-principal {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-lateral button {
+    font-size: 12px;
+    padding: 6px;
+  }
+  .conteudo-principal {
+    padding: 8px;
+  }
 }

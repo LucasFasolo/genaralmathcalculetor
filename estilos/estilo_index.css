@@ -1,132 +1,116 @@
-.caixa-flex{ /*Define a classe de estilo "caixa-flex*/
-
-  height: 100vh;    /* Define o tamanho da caixa. Neste caso a tela inteira visível.*/ 
-  flex-direction: column;   /* Define o padrão de ordem dos containers dentro desta caixa como uma matrix i x 1*/ 
-
-}
-/* Barra superior fixa */
-.barra-superior {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 0 20px;
-}
-
-/* Container principal */
-.container-principal {
-  display: flex;
-  padding-top: 70px;
-  min-height: 100vh;
-  transition: all 0.3s ease;
-}
-
-/* Menu lateral */
-.menu-lateral {
-  width: 200px;
-  background-color: #343a40;
-  color: white;
-  padding: 20px;
-  min-height: calc(100vh - 70px);
-  transition: all 0.3s ease;
-}
-
-.menu-lateral h1 {
-  font-size: 1.5rem;
-}
-
-.menu-lateral .botoes-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.menu-lateral button {
-  width: 100%;
+/* ===== Corpo da página ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
   padding: 10px;
-  border: none;
-  border-radius: 5px;
+}
+
+/* ===== Cabeçalho ===== */
+.cabecalho {
   background-color: #007bff;
-  color: white;
-  cursor: pointer;
+  color: white;               
+  border-radius: 8px;        
+  padding: 15px;             
+}
+
+/* ===== Container das matrizes ===== */
+.container-matriz {
+  display: inline-block; 
+  margin: 10px 0;
+}
+
+.linha-matriz {
+  margin: 5px 0;
+}
+
+.input-matriz {
+  width: 60px;             
+  padding: 8px;            
+  margin: 0 5px;           
+  border-radius: 6px;      
+  border: 1px solid #ccc;
+  text-align: center;      
+}
+
+/* ===== Caixa de resultado ===== */
+.caixa-resultado {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* ===== Todos os botões com efeito 3D ===== */
+button {
+  border-radius: 8px; 
+  cursor: pointer;    
+  transition: 0.2s;   /* transição suave para hover e click */
+
+  /*  relevo visual com transição de cores de maneira sutil */
+  background: linear-gradient(145deg,#4d94ff,#0066cc);
+
+  color: white;       
+  border: none;       
+  box-shadow: 0 4px #004d99; /* sombra abaixo do botão (efeito 3D) */
+  padding: 10px 15px; 
   font-size: 16px;
-  transition: all 0.2s ease;
 }
 
-.menu-lateral button:hover {
-  background-color: #0056b3;
+/* Escurece levemente o botão */
+button:hover {
+  filter: brightness(0.9);
 }
 
-/* Conteúdo principal */
-.conteudo-principal {
-  flex-grow: 1;
+/* Click: botão "afunda" simulando físico */
+button:active {
+  transform: translateY(2px); /* desce 2px */
+  box-shadow: 0 2px #004d99;  /* sombra diminui */
+}
+
+/* ===== Calculadora ===== */
+.container-calculadora {
+  max-width: 300px; /* largura máxima para PC */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 6px 15px rgba(0,0,0,0.2); /* sombra geral da caixa */
   padding: 20px;
-  transition: all 0.3s ease;
+  margin: 0 auto; /* centraliza horizontalmente */
 }
 
-/* RESPONSIVO */
-@media (max-width: 1024px) {
-  .menu-lateral {
-    width: 150px;
-    padding: 15px;
-  }
-  .menu-lateral button {
-    font-size: 14px;
-    padding: 8px;
-  }
-  .conteudo-principal {
-    padding: 15px;
-  }
+.display-calculadora {
+  width: 100%;
+  height: 50px;
+  background-color: #e0e0e0; 
+  border-radius: 6px;
+  line-height: 50px;          /* centraliza verticalmente */
+  font-size: 24px;
+  text-align: right;
+  padding: 0 10px;
+  box-sizing: border-box;
+  box-shadow: inset 0px 2px 5px rgba(0,0,0,0.1); /* sombra interna para efeito 3D */
 }
 
-@media (max-width: 768px) {
-  .container-principal {
-    flex-direction: column;
-  }
-
-  .menu-lateral {
-    width: 100%;
-    min-height: auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 10px;
-  }
-
-  .menu-lateral .botoes-menu {
-    flex-direction: row;
-    gap: 5px;
-    margin-top: 0;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .menu-lateral button {
-    flex: 1 1 auto;
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  .conteudo-principal {
-    padding: 10px;
-  }
+.botoes-calculadora {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+  gap: 10px; /* espaço entre botões */
 }
 
-@media (max-width: 480px) {
-  .menu-lateral button {
-    font-size: 12px;
-    padding: 6px;
+
+
+/* ===== Responsividade ===== */
+@media(max-width:400px){
+  .container-calculadora {
+    max-width: 90%; /* ocupa quase toda a tela no mobile */
   }
-  .conteudo-principal {
-    padding: 8px;
+  .botoes-calculadora button {
+    padding: 12px 0;
+    font-size: 16px;
+  }
+  .input-matriz {
+    width: 50px;
+    margin: 0 3px;
   }
 }

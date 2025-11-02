@@ -42,3 +42,23 @@ botoesCalculadora.forEach(botao => {
     displayCalculadora.textContent = botao.textContent;
   });
 });
+
+
+// Seleciona o select do tamanho do sistema
+const tamanhoSistema = document.getElementById('tamanho-sistema');
+// Seleciona os containers das matrizes
+const inputs2x2Sistema = document.getElementById('inputs-2x2-sistema');
+const inputs3x3Sistema = document.getElementById('inputs-3x3-sistema');
+
+// Adiciona evento de mudança no select
+tamanhoSistema.addEventListener('change', () => {
+  if (tamanhoSistema.value === '2') {
+    inputs2x2Sistema.classList.remove('d-none'); // mostra 2x2
+    inputs3x3Sistema.classList.add('d-none');    // esconde 3x3
+  } else {
+    inputs2x2Sistema.classList.add('d-none');    // esconde 2x2
+    inputs3x3Sistema.classList.remove('d-none'); // mostra 3x3
+  }
+});
+
+

@@ -22,10 +22,74 @@
   <div class="abas d-flex justify-content-center my-3 gap-2">
     <button class="botao-aba ativo btn btn-secondary" data-alvo="#determinante">Determinante</button>
     <button class="botao-aba btn btn-secondary" data-alvo="#calculadora">Calculadora</button>
+    <button class="botao-aba btn btn-secondary" data-alvo="#sistema_linear">Sistema Linear</button>
   </div>
 
   <!-- ===================== Conteúdo das abas ===================== -->
   <div class="conteudo-abas text-center">
+    <!-- ===================== Aba Sistema Linear ===================== -->
+    <div id="sistema_linear" class="conteudo-aba d-none">
+
+      <!-- Seleção do tamanho do sistema -->
+      <label for="tamanho-sistema">Escolha o tamanho do sistema:</label>
+      <select id="tamanho-sistema" class="form-select w-auto mx-auto my-2">
+        <option value="2">2 incógnitas (2x2)</option>
+        <option value="3">3 incógnitas (3x3)</option>
+      </select>
+
+      <!-- Sistema 2x2 -->
+      <div id="inputs-2x2-sistema" class="container-sistema">
+        <div class="linha-sistema my-1">
+          <input type="number" class="input-sistema" placeholder="a11">
+          <span>+</span>
+          <input type="number" class="input-sistema" placeholder="a12">
+          <span>=</span>
+          <input type="number" class="input-sistema" placeholder="b1">
+        </div>
+        <div class="linha-sistema my-1">
+          <input type="number" class="input-sistema" placeholder="a21">
+          <span>+</span>
+          <input type="number" class="input-sistema" placeholder="a22">
+          <span>=</span>
+          <input type="number" class="input-sistema" placeholder="b2">
+        </div>
+      </div>
+
+      <!-- Sistema 3x3 -->
+      <div id="inputs-3x3-sistema" class="container-sistema d-none">
+        <div class="linha-sistema my-1">
+          <input type="number" class="input-sistema" placeholder="a11">
+          <span>+</span>
+          <input type="number" class="input-sistema" placeholder="a12">
+          <span>+</span>
+          <input type="number" class="input-sistema" placeholder="a13">
+          <span>=</span>
+          <input type="number" class="input-sistema" placeholder="b1">
+        </div>
+        <div class="linha-sistema my-1">
+          <input type="number" class="input-sistema" placeholder="a21">
+          <span>+</span>
+          <input type="number" class="input-sistema" placeholder="a22">
+          <span>+</span>
+          <input type="number" class="input-sistema" placeholder="a23">
+          <span>=</span>
+          <input type="number" class="input-sistema" placeholder="b2">
+        </div>
+        <div class="linha-sistema my-1">
+          <input type="number" class="input-sistema" placeholder="a31">
+          <span>+</span>
+          <input type="number" class="input-sistema" placeholder="a32">
+          <span>+</span>
+          <input type="number" class="input-sistema" placeholder="a33">
+          <span>=</span>
+          <input type="number" class="input-sistema" placeholder="b3">
+        </div>
+      </div>
+
+      <!-- Botão de cálculo e resultado -->
+      <button class="botao-calcular btn btn-success mt-3">Calcular Sistema</button>
+      <div class="caixa-resultado mt-2">Resultado:</div>
+    </div>
 
     <!-- ===================== Aba Determinante ===================== -->
     <div id="determinante" class="conteudo-aba">

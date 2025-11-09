@@ -18,6 +18,95 @@
   <header class="cabecalho text-center py-3">
     <h1>MATEMÁQUINA EXTERMATRIZADORA</h1>
   </header>
+  
+  <!-- ===================== PUXADORES ===================== -->
+  <div class="puxadores">
+    <!-- Puxador 1: Tutorial Determinante -->
+    <div class="puxador-container">
+      <button class="puxador-botao">📖 Tutorial: Determinante</button>
+      <div class="puxador-conteudo">
+        <div class="puxador-cabecalho">
+          <h3>Como Calcular Determinante</h3>
+          <button class="puxador-fechar">×</button>
+        </div>
+        <div class="puxador-corpo">
+          <h4>1. Escolha o tamanho da matriz:</h4>
+          <p>Selecione 2x2 ou 3x3 no menu acima.</p>
+          
+          <h4>2. Preencha os valores:</h4>
+          <p>Digite os números da matriz nos campos correspondentes.</p>
+          
+          <h4>3. Use símbolos matemáticos:</h4>
+          <p>Você pode usar: <strong>√</strong> (raiz), <strong>^</strong> (potência), <strong>/</strong> (divisão), <strong>log</strong> (logaritmo)</p>
+          <p>Exemplos: √16, 2^3, 10/2, log10</p>
+          
+          <h4>4. Clique em "Calcular Determinante":</h4>
+          <p>O resultado aparecerá abaixo do botão.</p>
+          
+          <h4>📐 Fórmulas:</h4>
+          <p><strong>2x2:</strong> det = a11·a22 - a12·a21</p>
+          <p><strong>3x3:</strong> Use a regra de Sarrus ou cofatores.</p>
+          
+          <h4>💡 Dica:</h4>
+          <p>Use o puxador de símbolos para copiar símbolos matemáticos rapidamente!</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Puxador 2: Tutorial Sistema Linear -->
+    <div class="puxador-container">
+      <button class="puxador-botao">📚 Tutorial: Sistema Linear</button>
+      <div class="puxador-conteudo">
+        <div class="puxador-cabecalho">
+          <h3>Como Resolver Sistema Linear</h3>
+          <button class="puxador-fechar">×</button>
+        </div>
+        <div class="puxador-corpo">
+          <h4>1. Escolha o tamanho do sistema:</h4>
+          <p>Selecione 2 incógnitas (2x2) ou 3 incógnitas (3x3).</p>
+          
+          <h4>2. Digite os coeficientes:</h4>
+          <p>Preencha os valores das equações nos campos.</p>
+          
+          <h4>3. Use símbolos matemáticos:</h4>
+          <p>Você pode usar: <strong>√</strong> (raiz), <strong>^</strong> (potência), <strong>/</strong> (divisão), <strong>log</strong> (logaritmo)</p>
+          <p>Exemplos: √16, 2^3, 10/2, log10</p>
+          
+          <h4>4. Clique em "Calcular Sistema":</h4>
+          <p>O resultado mostrará os valores de X, Y (e Z se for 3x3).</p>
+          
+          <h4>Tipos de Resultado:</h4>
+          <p><strong>Sistema Possível Determinado:</strong> Uma única solução (X, Y, Z)</p>
+          <p><strong>Sistema Possível Indeterminado:</strong> Infinitas soluções</p>
+          <p><strong>Sistema Impossível:</strong> Sem solução</p>
+          
+          <h4>💡 Dica:</h4>
+          <p>Use o puxador de símbolos para copiar símbolos matemáticos rapidamente!</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Puxador 3: Símbolos Matemáticos -->
+    <div class="puxador-container">
+      <button class="puxador-botao">🔢 Símbolos Matemáticos</button>
+      <div class="puxador-conteudo">
+        <div class="puxador-cabecalho">
+          <h3>Símbolos para Copiar</h3>
+          <button class="puxador-fechar">×</button>
+        </div>
+        <div class="puxador-corpo">
+          <p class="texto-ajuda">Clique em um símbolo para copiar e usar nos campos!</p>
+          <div class="simbolos-grid">
+            <button class="botao-simbolo" data-simbolo="√">√</button>
+            <button class="botao-simbolo" data-simbolo="^">^</button>
+            <button class="botao-simbolo" data-simbolo="/">/</button>
+            <button class="botao-simbolo" data-simbolo="log">log</button>
+          </div>
+          <p class="texto-copiado" id="texto-copiado"></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ===================== Container principal ===================== -->
   <div id="borda_site">
@@ -67,6 +156,7 @@
             <span>Y</span> <span>=</span>
             <input type="text" class="input-sistema" placeholder="b2" id="2b2">
           </div>
+
         </div>
 
         <!-- Sistema 3x3 -->
@@ -131,6 +221,15 @@
             <input type="number" class="input-matriz" placeholder="A21" id="2A21">
             <input type="number" class="input-matriz" placeholder="A22" id="2A22">
           </div>
+          <!-- Botões e resultado -->
+        <div class="d-flex justify-content-center gap-2 mt-2">
+          <button class="botao-calcular" id="button_det2x2">Calcular Determinante</button>
+          <button id="resetarDet2x2" class="botoesResetar">
+            <img class="icones" src="../imagens/resetar_icone.png">
+          </button>
+        </div>
+
+        <div class="caixa-resultado mt-3" id="det2x2">Resultado:</div>
         </div>
 
         <!-- Matriz 3x3 -->
@@ -150,17 +249,18 @@
             <input type="number" class="input-matriz" placeholder="A32" id="3A32">
             <input type="number" class="input-matriz" placeholder="A33" id="3A33">
           </div>
-        </div>
-
         <!-- Botões e resultado -->
         <div class="d-flex justify-content-center gap-2 mt-2">
-          <button class="botao-calcular" id="button_det">Calcular Determinante</button>
-          <button id="resetarDet" class="botoesResetar">
+          <button class="botao-calcular" id="button_det3x3">Calcular Determinante</button>
+          <button id="resetarDet3x3" class="botoesResetar">
             <img class="icones" src="../imagens/resetar_icone.png">
           </button>
         </div>
 
-        <div class="caixa-resultado mt-3" id="det">Resultado:</div>
+        <div class="caixa-resultado mt-3" id="det3x3">Resultado:</div>
+        </div>
+
+        
       </div>
 
     </div> <!-- /conteúdo-abas -->

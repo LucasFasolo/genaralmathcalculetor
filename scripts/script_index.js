@@ -216,7 +216,6 @@ button_sis.addEventListener("click", () => {
 })
 
 let resetSis = document.getElementById("resetarSis")
-let resetDet = document.getElementById("resetarDet")
 
 resetSis.addEventListener("click", () => {
   if (tamanhoSistema.value == 2) {
@@ -242,13 +241,19 @@ resetSis.addEventListener("click", () => {
   }
 })
 
-resetDet.addEventListener("click", () => {
-  if (tamanhoMatriz.value == 2) {
+let resetDet2x2 = document.getElementById("resetarDet2x2")
+let resetDet3x3 = document.getElementById("resetarDet3x3")
+let res2x2 = document.getElementById("det2x2");
+let res3x3 = document.getElementById("det3x3");
+
+resetDet2x2.addEventListener("click", () => {
     document.getElementById("2A11").value = null;
     document.getElementById("2A12").value = null;
     document.getElementById("2A21").value = null;
     document.getElementById("2A22").value = null;
-  } else {
+    res2x2.innerHTML = "Resultado:";
+});
+resetDet3x3.addEventListener("click", () => {
     document.getElementById("3A11").value = null;
     document.getElementById("3A12").value = null;
     document.getElementById("3A13").value = null;
@@ -258,21 +263,24 @@ resetDet.addEventListener("click", () => {
     document.getElementById("3A31").value = null;
     document.getElementById("3A32").value = null;
     document.getElementById("3A33").value = null;
-  }
-})
+    res3x3.innerHTML = "Resultado:";
+  });
 
-let button_det = document.getElementById("button_det");
-let res = document.getElementById("det");
+let button_det2x2 = document.getElementById("button_det2x2");
 
-button_det.addEventListener("click", () => {
+button_det2x2.addEventListener("click", () => {
   let det;
-  if (tamanhoMatriz.value == 2) {
     let DA11 = Number(document.getElementById("2A11").value);
     let DA12 = Number(document.getElementById("2A12").value);
     let DA21 = Number(document.getElementById("2A21").value);
     let DA22 = Number(document.getElementById("2A22").value);
     det = det2(DA11, DA12, DA21, DA22);
-  } else {
+    res2x2.innerHTML= "Resultado: "+det;
+  });
+
+let button_det3x3 = document.getElementById("button_det3x3");
+
+button_det3x3.addEventListener("click", () => {
     let TA11 = Number(document.getElementById("3A11").value);
     let TA12 = Number(document.getElementById("3A12").value);
     let TA13 = Number(document.getElementById("3A13").value);
@@ -283,11 +291,127 @@ button_det.addEventListener("click", () => {
     let TA32 = Number(document.getElementById("3A32").value);
     let TA33 = Number(document.getElementById("3A33").value);
     det = det3(TA11, TA12, TA13, TA21, TA22, TA23, TA31, TA32, TA33);
-  }
-  
-  res.innerHTML= "Resultado: "+det;
-})
+    res3x3.innerHTML= "Resultado: "+det;
+  });
 
 document.querySelectorAll('input').forEach(input => {
   input.setAttribute('autocomplete', 'off');
+});
+
+
+
+
+// =====================
+//  PUXADORES LATERAIS
+// =====================
+
+// Seleciona todos os puxadores e o container pai
+var puxadores = document.querySelectorAll('.puxador-container');
+var puxadoresPai = document.querySelector('.puxadores');
+
+puxadores.forEach(function(puxador) {
+  var botao = puxador.querySelector('.puxador-botao');    // botão que abre/fecha
+  var fechar = puxador.querySelector('.puxador-fechar');   // botão de fechar
+  var conteudo = puxador.querySelector('.puxador-conteudo'); // conteúdo interno
+
+  // Ao clicar no botão do puxador
+  botao.addEventListener('click', function(e) {
+    e.stopPropagation(); // não propaga para document
+
+    // Fecha todos os puxadores antes
+    puxadores.forEach(function(p) {
+      p.classList.remove('ativo');
+      p.classList.remove('escondido');
+    });
+
+    // Abre apenas este se estava fechado
+    if (!puxador.classList.contains('ativo')) {
+      puxador.classList.add('ativo');
+      // Esconde os outros puxadores
+      puxadores.forEach(function(p) {
+        if (p !== puxador) p.classList.add('escondido');
+      });
+    }
+  });
+
+  // Botão de fechar específico do puxador
+  if (fechar) {
+    fechar.addEventListener('click', function(e) {
+      e.stopPropagation();
+      puxador.classList.remove('ativo');   // fecha este
+      puxadores.forEach(function(p) {
+        p.classList.remove('escondido');   // mostra todos
+      });
+    });
+  }
+
+  // Evita que clique no conteúdo feche o puxador
+  conteudo.addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+});
+
+// Fecha todos os puxadores ao clicar fora
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.puxadores')) {
+    puxadores.forEach(function(p) {
+      p.classList.remove('ativo');
+      p.classList.remove('escondido');
+    });
+  }
+});
+
+
+// =====================
+//  COPIAR SÍMBOLOS
+// =====================
+
+// Seleciona todos os botões de símbolo e a mensagem
+var botoes = document.querySelectorAll('.botao-simbolo');
+var msg = document.getElementById('texto-copiado');
+var inputAtivo = null;
+
+// Marca qual input está ativo
+var inputs = document.querySelectorAll('input[type="text"]');
+inputs.forEach(function(input) {
+  input.addEventListener('focus', function() { inputAtivo = input; });
+  input.addEventListener('blur', function() { inputAtivo = null; });
+});
+
+// Ao clicar em um botão de símbolo
+botoes.forEach(function(botao) {
+  botao.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var simbolo = botao.getAttribute('data-simbolo');
+
+    // Copia para área de transferência
+    var temp = document.createElement('textarea');
+    temp.value = simbolo;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand('copy');
+    document.body.removeChild(temp);
+
+    // Se algum input estiver ativo, insere o símbolo nele
+    if (inputAtivo) {
+      var inicio = inputAtivo.selectionStart;
+      var fim = inputAtivo.selectionEnd;
+      var valor = inputAtivo.value;
+      inputAtivo.value = valor.slice(0, inicio) + simbolo + valor.slice(fim);
+      inputAtivo.focus();
+      msg.textContent = `"${simbolo}" inserido no campo!`;
+    } else {
+      msg.textContent = `"${simbolo}" copiado! Cole onde quiser.`;
+    }
+
+    // Mostra a mensagem temporária
+    msg.classList.add('mostrar');
+
+    // Fecha a mensagem ao clicar fora do botão
+    document.addEventListener('click', function(ev) {
+      if (!ev.target.classList.contains('botao-simbolo')) {
+        msg.classList.remove('mostrar');
+      }
+    }, { once: true });
+  });
 });

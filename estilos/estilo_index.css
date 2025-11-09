@@ -1,32 +1,36 @@
-/* ===== Variáveis Globais - Tema Claro Azul ===== */
+/* =========================================================
+   VARIÁVEIS GLOBAIS - TEMA CLARO AZUL
+   ========================================================= */
 :root {
 
   /* ===== Fundo e Texto ===== */
-  --cor-fundo: #F5F9FF;               
-  --cor-texto: #0A1A33;               
-  --cor-texto-secundaria: #FFFFFF;    
+  --cor-fundo: #F5F9FF;                   /* cor de fundo geral */
+  --cor-texto: #0A1A33;                   /* cor principal do texto */
+  --cor-texto-secundaria: #FFFFFF;        /* texto claro (usado em botões, cabeçalho etc) */
 
   /* ===== Botões Azuis ===== */
-  --cor-gradiente1: #4D9CFF;          
-  --cor-gradiente2: #0057B2;          
-  --cor-botao-sombra: #003A80;        
-  --cor-brilho: rgba(77, 156, 255, 0.35); 
+  --cor-gradiente1: #4D9CFF;              /* cor inicial do gradiente */
+  --cor-gradiente2: #0057B2;              /* cor final do gradiente */
+  --cor-botao-sombra: #003A80;            /* sombra inferior do botão (efeito 3D) */
+  --cor-brilho: rgba(77, 156, 255, 0.35); /* brilho sutil no cabeçalho e botões */
 
   /* ===== Inputs e Caixas ===== */
-  --cor-borda-input: #A9CFFF;         
-  --cor-fundo-input: #FFFFFF;         
-  --cor-caixa-fundo: rgba(240, 248, 255, 0.9); 
-  --cor-caixa-borda: #0070E0;         
-  --cor-caixa-sombra: rgba(0, 112, 224, 0.2);  
+  --cor-borda-input: #A9CFFF;             /* cor da borda dos inputs */
+  --cor-fundo-input: #FFFFFF;             /* fundo branco dos campos */
+  --cor-caixa-fundo: rgba(240, 248, 255, 0.9); /* fundo translúcido das caixas */
+  --cor-caixa-borda: #0070E0;             /* borda azul das caixas */
+  --cor-caixa-sombra: rgba(0, 112, 224, 0.2);  /* sombra leve sob as caixas */
 
   /* ===== Sistema Linear ===== */
-  --cor-container-sistema: rgba(235, 244, 255, 0.85);
-  --cor-container-sistema-borda: rgba(0, 112, 224, 0.3);
-  --cor-container-sistema-sombra: rgba(0, 112, 224, 0.2);
+  --cor-container-sistema: rgba(235, 244, 255, 0.85);       /* fundo translúcido do container */
+  --cor-container-sistema-borda: rgba(0, 112, 224, 0.3);    /* borda do sistema linear */
+  --cor-container-sistema-sombra: rgba(0, 112, 224, 0.2);   /* sombra do sistema linear */
 }
 
 
-/* ===== Corpo da página ===== */
+/* =========================================================
+   ESTILO GERAL DA PÁGINA
+   ========================================================= */
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -35,7 +39,10 @@ body {
   padding: 10px;
 }
 
-/* ===== Cabeçalho ===== */
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
 .cabecalho {
   background: linear-gradient(135deg, var(--cor-gradiente1), var(--cor-gradiente2));
   color: var(--cor-texto-secundaria);
@@ -47,9 +54,12 @@ body {
   letter-spacing: 1px;
 }
 
-/* ===== Container das matrizes ===== */
+
+/* =========================================================
+   MATRIZES
+   ========================================================= */
 .container-matriz {
-  display: inline-block;
+  display: block;
   margin: 10px 0;
 }
 
@@ -69,7 +79,10 @@ body {
   box-shadow: inset 0 0 8px var(--cor-display);
 }
 
-/* ===== Caixa de resultado ===== */
+
+/* =========================================================
+   CAIXA DE RESULTADO
+   ========================================================= */
 .caixa-resultado {
   margin-top: 10px;
   padding: 15px;
@@ -80,7 +93,10 @@ body {
   box-shadow: 0px 4px 15px var(--cor-caixa-sombra);
 }
 
-/* ===== Todos os botões com efeito 3D ===== */
+
+/* =========================================================
+   BOTÕES (EFEITO 3D)
+   ========================================================= */
 button {
   border-radius: 10px;
   cursor: pointer;
@@ -94,60 +110,26 @@ button {
   font-size: 16px;
 }
 
+/* Efeito ao passar o mouse */
 button:hover {
   filter: brightness(1.1);
 }
 
+/* Efeito de clique */
 button:active {
   transform: translateY(2px);
   box-shadow: 0 2px var(--cor-botao-sombra);
 }
 
-.display-calculadora {
-  width: 100%;
-  height: 50px;
-  background: var(--cor-display);
-  border-radius: 8px;
-  line-height: 50px;
-  font-size: 24px;
-  text-align: right;
-  padding: 0 10px;
-  color: var(--cor-borda-input);
-  box-sizing: border-box;
-  box-shadow: inset 0 2px 8px var(--cor-display);
-}
 
-/* Grade de botões */
-.botoes-calculadora {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-
-/* ===== Responsividade ===== */
-@media(max-width:400px){
-  .container-calculadora {
-    max-width: 90%;
-  }
-  .botoes-calculadora button {
-    padding: 12px 0;
-    font-size: 16px;
-  }
-  .input-matriz {
-    width: 50px;
-    margin: 0 3px;
-  }
-}
-
-/* ===== Sistema Linear ===== */
+/* =========================================================
+   SISTEMA LINEAR
+   ========================================================= */
 .container-sistema {
   display: inline-block;
   text-align: center;
   background: var(--cor-container-sistema);
   padding: 15px;
-  border-radius: 10px;
-  border: 1px solid var(--cor-container-sistema-borda);
-  box-shadow: 0px 6px 15px var(--cor-container-sistema-sombra);
 }
 
 .linha-sistema {
@@ -169,6 +151,53 @@ button:active {
   box-shadow: inset 0 0 8px var(--cor-display);
 }
 
-#configuracao_icone {
-  height: 36px;
+
+/* =========================================================
+   CONFIGURAÇÕES
+   ========================================================= */
+.botoes_configuracao {
+  width: 150px;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+@media (max-width: 400px) {
+  .input-matriz {
+    width: 50px;
+    margin: 0 3px;
+  }
+
+  .cabecalho {
+    width: fit-content;
+  }
+}
+
+
+/* =========================================================
+   ÍCONES E BOTÕES DE RESET
+   ========================================================= */
+.icones {
+  height: 20px;
+}
+
+.botoesResetar {
+  height: 44px;
+}
+
+
+/* =========================================================
+   BORDA PRINCIPAL DO SITE
+   ========================================================= */
+#borda_site {
+  border: 1px solid var(--cor-caixa-borda);
+  border-radius: 10px;
+  color: var(--cor-texto);
+  box-shadow: 0px 4px 15px var(--cor-caixa-sombra);
+  margin-top: 30px;
+  width: 390px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
 }

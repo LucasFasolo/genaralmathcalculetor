@@ -51,7 +51,7 @@ body {
   box-shadow: 0px 4px 12px var(--cor-brilho); /* Sombra suave */
   text-align: center;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 1px; 
 }
 
 
@@ -468,3 +468,4 @@ button:active {
   max-height: 500px; /* Ajuste conforme o conteúdo dele */
   overflow-y: auto;  /* Scroll aparece se precisar */
 }
+

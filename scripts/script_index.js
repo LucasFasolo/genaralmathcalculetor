@@ -211,8 +211,6 @@ button_sis.addEventListener("click", () => {
     res_sis3x3.innerHTML= "Resultado: ("+ x + "," + y + ","+ z + ")";
     }
   }
-  
-  
 })
 let resetSis = document.getElementById("resetarSis")
 

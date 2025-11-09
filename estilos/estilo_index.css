@@ -463,3 +463,8 @@ button:active {
     display: none; /* Esconde totalmente em celulares */
   }
 }
+
+#puxadores-conteudo-limitado {
+  max-height: 500px; /* Ajuste conforme o conteúdo dele */
+  overflow-y: auto;  /* Scroll aparece se precisar */
+}

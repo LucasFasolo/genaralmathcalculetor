@@ -214,7 +214,6 @@ button_sis.addEventListener("click", () => {
   
   
 })
-
 let resetSis = document.getElementById("resetarSis")
 
 resetSis.addEventListener("click", () => {

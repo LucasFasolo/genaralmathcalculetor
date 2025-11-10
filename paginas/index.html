@@ -15,9 +15,26 @@
 <body>
 
   <!-- ===================== Cabeçalho ===================== -->
-  <header class="cabecalho text-center py-3">
-    <h1>MATEMÁQUINA EXTERMATRIZADORA</h1>
-  </header>
+<header class="cabecalho py-3">
+  <!-- Botão de menu (só aparece quando os puxadores somem) -->
+  <div id="div-botao-menu">
+    <button id="botao-menu">☰</button>
+  </div>
+
+  <!-- Título centralizado -->
+  <h1>MATEMÁQUINA EXTERMATRIZADORA</h1>
+</header>
+  <!-- ===================== Menu Lateral ===================== -->
+  <div id="menu-lateral" class="d-none">
+    <ul>
+      <li class="menu-item" data-alvo=".ferramentas">Ferramentas</li>
+      <li class="menu-item" data-alvo=".puxador-container:first-child">Tutorial Determinante</li>
+      <li class="menu-item" data-alvo=".puxador-container:nth-child(2)">Tutorial Sistema Linear</li>
+      <li class="menu-item" data-alvo=".puxador-container:last-child">Símbolos Matemáticos</li>
+    </ul>
+  </div>
+
+
   
   <!-- ===================== PUXADORES ===================== -->
   <div class="puxadores">
@@ -107,9 +124,8 @@
       </div>
     </div>
   </div>
-
-  <!-- ===================== Container principal ===================== -->
-  <div id="borda_site">
+  <!-- ===================== Container principal das ferramentas ===================== -->
+  <div id="borda_site" class="ferramentas">
 
     <!-- ===================== Botões das abas ===================== -->
     <div class="abas d-flex justify-content-center my-2 mt-1 gap-2">

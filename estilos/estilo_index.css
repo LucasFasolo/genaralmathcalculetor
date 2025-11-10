@@ -180,6 +180,13 @@ button:active {
   height: 20px; /* Tamanho padrão dos ícones */
 }
 
+.icones_puxadores {
+  height: 30px; /* Tamanho padrão dos ícones */
+}
+.icones_simbolo {
+  height: 35px; /* Tamanho padrão dos ícones */
+}
+
 .botoesResetar {
   height: 44px; /* Altura dos botões de reset */
 }
@@ -236,7 +243,7 @@ button:active {
 
 .puxador-container {
   position: relative;
-  top: 20%
+    margin-top: 25px;
      /* Base para o botão e conteúdo interno */
 }
 
@@ -257,7 +264,29 @@ button:active {
   padding: 10px 20px;
   text-align: left;
   z-index: 10;
+
+  /* ===== alinhamento ===== */
+  display: flex;
+  align-items: center; /* centraliza verticalmente */
 }
+/* ==========================
+   Controle do texto lateral
+   ========================== */
+   .puxador-texto-ajuda {
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--cor-texto);
+    margin-left: auto;
+    margin-bottom: 0;
+    transition: opacity 0.3s ease; /* transição suave pra sumir e voltar */
+  }
+  
+  /* Quando o puxador é aberto (ativo), o texto da direita some */
+  .puxador-container.ativo .puxador-texto-ajuda {
+    opacity: 0;
+  }
+
+
 
 /* Hover faz o puxador deslizar levemente */
 .puxador-botao:hover {
@@ -379,6 +408,8 @@ button:active {
   color: var(--cor-gradiente2); /* Destaca texto importante */
 }
 
+
+
 /* Grid de símbolos matemáticos */
 .simbolos-grid {
   display: grid;
@@ -483,57 +514,179 @@ button:active {
   transform: scale(1.1);
 }
 
-/* Responsividade: botão aparece quando os puxadores somem */
+.secao-mobile {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .puxadores {
+    display: block;
+  }
+  .secao-mobile:not(#ferramentas) {
+    display: none !important;
+  }
+  #ferramentas.secao-mobile {
+    display: block !important;
+  }
+}
+
 @media (max-width: 768px) {
-  .puxadores { display: none; }
-  #div-botao-menu { display: inline-block; }
-  
+  .puxadores { 
+    display: none; 
+  }
+  #div-botao-menu { 
+    display: inline-block; 
+  }
   .cabecalho {
-    justify-content: flex-start; /* botão à esquerda, título depois */
+    justify-content: flex-start;
+  }
+  .secao-mobile {
+    display: none;
+  }
+  .secao-mobile.ativa {
+    display: block;
+  }
+}
+
+#menu-overlay {
+  display: none;
+}
+
+#menu-lateral {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #menu-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
 
+  #menu-overlay.ativo {
+    opacity: 1;
+    visibility: visible;
+  }
 
-}/* ===== Menu Lateral ===== */
-#menu-lateral {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 220px;
-  height: 100vh;
-  background-color: #1a1a1a;
-  color: #fff;
+  #menu-lateral {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    max-width: 80%;
+    height: 100vh;
+    background-color: var(--cor-fundo-input);
+    color: var(--cor-texto);
+    padding: 20px;
+    box-shadow: 3px 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
+
+  #menu-lateral.ativo {
+    transform: translateX(0);
+  }
+
+  #menu-lateral .menu-fechar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--cor-texto);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+  }
+
+  #menu-lateral .menu-fechar:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  #menu-lateral ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+  }
+
+  #menu-lateral ul li {
+    padding: 15px 12px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.2s;
+    font-weight: 500;
+  }
+
+  #menu-lateral ul li:hover {
+    background: var(--cor-container-sistema);
+  }
+
+  #menu-lateral ul li:active {
+    background: var(--cor-gradiente1);
+    color: var(--cor-texto-secundaria);
+  }
+}
+
+.conteudo-mobile {
   padding: 20px;
-  box-shadow: 3px 0 8px rgba(0,0,0,0.5);
-  z-index: 1000;
-  transition: transform 0.3s ease;
 }
 
-#menu-lateral.d-none {
-  transform: translateX(-100%);
-}
-
-#menu-lateral ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#menu-lateral ul li {
-  padding: 12px 10px;
-  margin-bottom: 8px;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background 0.2s;
-}
-
-#menu-lateral ul li:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-#botao-menu {
-  background: none;
-  border: none;
+.conteudo-mobile h2 {
+  color: var(--cor-texto);
+  margin-bottom: 20px;
   font-size: 1.8rem;
-  cursor: pointer;
-  color: inherit;
+  text-align: center;
+}
+
+.conteudo-tutorial {
+  background: var(--cor-caixa-fundo);
+  border: 1px solid var(--cor-caixa-borda);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px 0;
+  box-shadow: 0px 4px 15px var(--cor-caixa-sombra);
+}
+
+.conteudo-tutorial h4 {
+  color: var(--cor-gradiente2);
+  margin-top: 15px;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.conteudo-tutorial p {
+  color: var(--cor-texto);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.conteudo-tutorial strong {
+  color: var(--cor-gradiente2);
+}
+
+.conteudo-mobile .simbolos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 300px;
 }

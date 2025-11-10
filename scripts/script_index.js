@@ -108,6 +108,62 @@ let button_sis=document.getElementById("Button_sis");
 let res_sis2x2= document.getElementById("sis2x2")
 let res_sis3x3 = document.getElementById("sis3x3")
 
+
+function simbolTrans (valores_para_traducao) {
+  let simbolos = ['√', '^', "log", "/", "ln", "sen", "cos", "tg"]; //Lista de símbolos para equações
+  
+  for (let i = 0; i < valores_para_traducao.length; i++) { //itera todos os valores que deverão ser conferidos
+    console.log(`Verificando campo ${i + 1}:`, valores_para_traducao[i], typeof valores_para_traducao[i]);
+    for (let s of simbolos) { //considera s como todos os símbolos da lista
+      if (String(valores_para_traducao[i]).includes(s)) { // então se o valor sendo conferido possuir "s" (vulgo qualquer símbolo)
+
+        // 8 ^ 2
+        let partes = valores_para_traducao[i].split(s); //divide a string em duas partes (antes e depois do símbolo)
+        let partes_float = partes.map(x => parseFloat(x)); //passa a mesma lista inteira para float
+          
+        valores_para_traducao[i] = Number(partes[0]) //converte o valor da esquerda para inteiro (já que a maioria dos números do user vem na direita)
+          
+        if(s == simbolos[0]){
+          if(Number.isNaN(partes_float[0])) {
+            console.log(partes_float);
+            valores_para_traducao[i] = Math.sqrt(partes_float[1]); //Finalmente define o valor que está sendo conferido sendo igual à respectiva equação
+          }else {
+            valores_para_traducao[i] = partes_float[0]*(partes_float[1] ** 0.5);
+          }
+        }
+
+        else if(s == simbolos[1]){
+          valores_para_traducao[i] = partes_float[0] ** partes_float[1]
+        }
+
+        else if(s == simbolos[2]){
+          valores_para_traducao[i] = Math.log10(partes_float[0]) 
+        }
+
+        else if(s == simbolos[3]){
+          valores_para_traducao[i] = partes_float[0] / partes_float[1];
+        }
+        else if(s == simbolos[4]){
+          valores_para_traducao[i] = Math.log(partes_float[0]);
+        }
+        else if(s == simbolos[5]){
+          valores_para_traducao[i] = Math.sin(partes_float[0]);
+        }
+        else if(s == simbolos[6]){
+          valores_para_traducao[i] = Math.cos(partes_float[0]);
+        }
+        else if(s == simbolos[7]){
+          valores_para_traducao[i] = Math.tan(partes_float[0]);
+        }
+        console.log(`O campo ${i+1} contém o símbolo: ${s}`);
+
+      }else {
+        valores_para_traducao[i] = valores_para_traducao[i];
+      }
+    }
+  }
+  return valores_para_traducao;
+}
 button_sis.addEventListener("click", () => {
   let x;
   let y;
@@ -120,61 +176,28 @@ button_sis.addEventListener("click", () => {
     let Da21 = String(document.getElementById("2a21").value);
     let Da22 = String(document.getElementById("2a22").value);
     let Db2  = String(document.getElementById("2b2").value);
-    
-
-    
-
-    let simbolos = ['√', '^', "log", "/"]; //Lista de símbolos para equações
+    let res_sis = document.getElementById("sis")
     let valores_para_traducao = []; //lista dos números que serão convertidos
     valores_para_traducao.push(Da11, Da12, Db1, Da21, Da22, Db2); //Adiciona os valores das variáveis a serem traduzidos
-
-
-    for (let i = 0; i < valores_para_traducao.length; i++) { //itera todos os valores que deverão ser conferidos
-      for (let s of simbolos) { //considera s como todos os símbolos da lista
-        if (valores_para_traducao[i].includes(s)) { // então se o valor sendo conferido possuir "s" (vulgo qualquer símbolo)
-
-          // 8 ^ 2
-          let partes = valores_para_traducao[i].split(simbolos[s]); //divide a string em duas partes (antes e depois do símbolo)
-          let partes_float = partes.map(x => parseFloat(x)); //passa a mesma lista inteira para float
-          
-          valores_para_traducao[i] = Number(partes[0]) //converte o valor da esquerda para inteiro (já que a maioria dos números do user vem na direita)
-          
-          if(s == simbolos[0]){
-            valores_para_traducao[i] = partes_float[1] ** 0.5; //Finalmente define o valor que está sendo conferido sendo igual à respectiva equação
-          }
-
-          else if(s == simbolos[1]){
-            valores_para_traducao[i] = partes_float[0] ** partes_float[1]
-          }
-
-          else if(s == simbolos[2]){
-            valores_para_traducao[i] = Math.log10(partes_float[0]) 
-          }
-
-          else if(s == simbolos[3]){
-            valores_para_traducao[i] = partes_float[0] / partes_float[1];
-          }
-          console.log(`O campo ${i+1} contém o símbolo: ${s}`);
-      }
-
-      else{
-        valores_para_traducao[i] = valores_para_traducao[i];
-      }
-    }
-  }
-
-
+    let traduzidos = simbolTrans(valores_para_traducao);
+    Da11 = traduzidos[0];
+    Da12 = traduzidos[1];
+    Db1 = traduzidos[2];
+    Da21 = traduzidos[3];
+    Da22 = traduzidos[4];
+    Db2 = traduzidos[5];
 
     if (det2(Da11,Da12,Da21,Da22)===0){
-      if ((Da11/Da21)==(Db1/Db2)){
-        res_sis.innerHTML= "Resultado: Infinito";
+      if ((Da11/Da21) == (Db1/Db2)){
+        res_sis.innerHTML = "Resultado: Infinito";
       }
       else{
-        res_sis.innerHTML= "Resultado: Esses numeros estão errados";
+        res_sis.innerHTML = "Resultado: Esses numeros estão errados";
       }
       
     }
     else{
+      console.log("teste");
     x=det2(Db1,Da12,Db2,Da22)/det2(Da11,Da12,Da21,Da22)
     y=det2(Da11,Db1,Da21,Db2)/det2(Da11,Da12,Da21,Da22)
 
@@ -194,6 +217,24 @@ button_sis.addEventListener("click", () => {
     let Ta32 = Number(document.getElementById("3a32").value);
     let Ta33 = Number(document.getElementById("3a33").value);
     let Tb3  = Number(document.getElementById("3b3").value);
+
+    let valores_para_traducao = []; //lista dos números que serão convertidos
+    valores_para_traducao.push(Ta11, Ta12, Ta13, Tb1, Ta21, Ta22, Ta23, Tb2, Ta31, Ta32, Ta33, Tb3); //Adiciona os valores das variáveis a serem traduzidos
+    let traduzidos = simbolTrans(valores_para_traducao);
+    Ta11 = traduzidos[0];
+    Ta12 = traduzidos[1];
+    Ta13 = traduzidos[2];
+    Tb1 = traduzidos[3];
+    Ta21 = traduzidos[4];
+    Ta22 = traduzidos[5];
+    Ta23 = traduzidos[6];
+    Tb2 = traduzidos[7];
+    Ta31 = traduzidos[8];
+    Ta32 = traduzidos[9];
+    Ta33 = traduzidos[10];
+    Tb3 = traduzidos[11];
+    
+    
     if (det3(Ta11,Ta12,Ta13,Ta21,Ta22,Ta23,Ta31,Ta32,Ta33)===0){
       if ((Da11/Da21)==(Db1/Db2) || (Da11/Da31)==(Db1/Db3) || (Da21/Da31)==(Db2/Db3)){
         res_sis.innerHTML= "Resultado: Infinito";
@@ -271,6 +312,15 @@ button_det2x2.addEventListener("click", () => {
     let DA12 = Number(document.getElementById("2A12").value);
     let DA21 = Number(document.getElementById("2A21").value);
     let DA22 = Number(document.getElementById("2A22").value);
+
+    let valores_para_traducao = []; //lista dos números que serão convertidos
+    valores_para_traducao.push(DA11, DA12, DA21, DA22); //Adiciona os valores das variáveis a serem traduzidos
+    let traduzidos = simbolTrans(valores_para_traducao);
+    DA11 = traduzidos[0];
+    DA12 = traduzidos[1];
+    DA21 = traduzidos[2];
+    DA22 = traduzidos[3];
+
     det = det2(DA11, DA12, DA21, DA22);
     res2x2.innerHTML= "Resultado: "+det;
   });
@@ -287,6 +337,20 @@ button_det3x3.addEventListener("click", () => {
     let TA31 = Number(document.getElementById("3A31").value);
     let TA32 = Number(document.getElementById("3A32").value);
     let TA33 = Number(document.getElementById("3A33").value);
+
+    let valores_para_traducao = []; //lista dos números que serão convertidos
+    valores_para_traducao.push(TA11, TA12, TA13, TA21, TA22, TA23, TA31, TA32, TA33); //Adiciona os valores das variáveis a serem traduzidos
+    let traduzidos = simbolTrans(valores_para_traducao);
+    TA11 = traduzidos[0];
+    TA12 = traduzidos[1];
+    TA13 = traduzidos[2];
+    TA21 = traduzidos[3];
+    TA22 = traduzidos[4];
+    TA23 = traduzidos[5];
+    TA31 = traduzidos[6];
+    TA32 = traduzidos[7];
+    TA33 = traduzidos[8];
+
     det = det3(TA11, TA12, TA13, TA21, TA22, TA23, TA31, TA32, TA33);
     res3x3.innerHTML= "Resultado: "+det;
   });
@@ -296,92 +360,68 @@ document.querySelectorAll('input').forEach(input => {
 });
 
 
-
-
 // =====================
 //  PUXADORES LATERAIS
 // =====================
 
-// Seleciona todos os puxadores e o container pai
 var puxadores = document.querySelectorAll('.puxador-container');
 var puxadoresPai = document.querySelector('.puxadores');
 
 puxadores.forEach(function(puxador) {
-  var botao = puxador.querySelector('.puxador-botao');    // botão que abre/fecha
-  var fechar = puxador.querySelector('.puxador-fechar');   // botão de fechar
-  var conteudo = puxador.querySelector('.puxador-conteudo'); // conteúdo interno
+  var botao = puxador.querySelector('.puxador-botao');
+  var fechar = puxador.querySelector('.puxador-fechar');
+  var conteudo = puxador.querySelector('.puxador-conteudo');
 
-  // Ao clicar no botão do puxador
   botao.addEventListener('click', function(e) {
-    e.stopPropagation(); // não propaga para document
+    e.stopPropagation();
 
-    // Fecha todos os puxadores antes
     puxadores.forEach(function(p) {
       p.classList.remove('ativo');
       p.classList.remove('escondido');
     });
 
-    // Abre apenas este se estava fechado
     if (!puxador.classList.contains('ativo')) {
       puxador.classList.add('ativo');
-      // Esconde os outros puxadores
       puxadores.forEach(function(p) {
         if (p !== puxador) p.classList.add('escondido');
       });
     }
   });
 
-  // Botão de fechar específico do puxador
   if (fechar) {
     fechar.addEventListener('click', function(e) {
       e.stopPropagation();
-      puxador.classList.remove('ativo');   // fecha este
+      puxador.classList.remove('ativo');
       puxadores.forEach(function(p) {
-        p.classList.remove('escondido');   // mostra todos
+        p.classList.remove('escondido');
       });
     });
   }
 
-  // Evita que clique no conteúdo feche o puxador
   conteudo.addEventListener('click', function(e) {
     e.stopPropagation();
   });
 });
 
-// Fecha todos os puxadores ao clicar fora
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('.puxadores')) {
-    puxadores.forEach(function(p) {
-      p.classList.remove('ativo');
-      p.classList.remove('escondido');
-    });
-  }
-});
-
-
 // =====================
 //  COPIAR SÍMBOLOS
 // =====================
 
-// Seleciona todos os botões de símbolo e a mensagem
 var botoes = document.querySelectorAll('.botao-simbolo');
 var msg = document.getElementById('texto-copiado');
 var inputAtivo = null;
 
-// Marca qual input está ativo
 var inputs = document.querySelectorAll('input[type="text"]');
 inputs.forEach(function(input) {
   input.addEventListener('focus', function() { inputAtivo = input; });
   input.addEventListener('blur', function() { inputAtivo = null; });
 });
 
-// Ao clicar em um botão de símbolo
 botoes.forEach(function(botao) {
   botao.addEventListener('click', function(e) {
     e.stopPropagation();
     var simbolo = botao.getAttribute('data-simbolo');
 
-    // Copia para área de transferência
     var temp = document.createElement('textarea');
     temp.value = simbolo;
     document.body.appendChild(temp);
@@ -389,7 +429,6 @@ botoes.forEach(function(botao) {
     document.execCommand('copy');
     document.body.removeChild(temp);
 
-    // Se algum input estiver ativo, insere o símbolo nele
     if (inputAtivo) {
       var inicio = inputAtivo.selectionStart;
       var fim = inputAtivo.selectionEnd;
@@ -401,14 +440,33 @@ botoes.forEach(function(botao) {
       msg.textContent = `"${simbolo}" copiado! Cole onde quiser.`;
     }
 
-    // Mostra a mensagem temporária
     msg.classList.add('mostrar');
 
-    // Fecha a mensagem ao clicar fora do botão
     document.addEventListener('click', function(ev) {
       if (!ev.target.classList.contains('botao-simbolo')) {
         msg.classList.remove('mostrar');
       }
     }, { once: true });
+  });
+});
+// Seleciona elementos
+const botaoMenu = document.getElementById('botao-menu');
+const menuLateral = document.getElementById('menu-lateral');
+const itensMenu = document.querySelectorAll('#menu-lateral .menu-item');
+
+// Alterna a visibilidade do menu lateral
+botaoMenu.addEventListener('click', () => {
+  menuLateral.classList.toggle('d-none');
+});
+
+// Scroll suave para os elementos alvo ao clicar no item do menu
+itensMenu.forEach(item => {
+  item.addEventListener('click', () => {
+    const alvo = document.querySelector(item.getAttribute('data-alvo'));
+    if (alvo) {
+      alvo.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Fecha o menu após clicar
+    menuLateral.classList.add('d-none');
   });
 });

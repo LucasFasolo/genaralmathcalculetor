@@ -104,7 +104,8 @@ function det3(A11, A12, A13, A21, A22, A23, A31, A32, A33) {
 
 
 
-let button_sis=document.getElementById("Button_sis");
+let button_sis2x2=document.getElementById("Button_sis2x2");
+let button_sis3x3=document.getElementById("Button_sis3x3");
 let res_sis2x2= document.getElementById("sis2x2")
 let res_sis3x3 = document.getElementById("sis3x3")
 
@@ -164,19 +165,17 @@ function simbolTrans (valores_para_traducao) {
   }
   return valores_para_traducao;
 }
-button_sis.addEventListener("click", () => {
+button_sis2x2.addEventListener("click", () => {
   let x;
   let y;
-  let z;
 
-  if (tamanhoSistema.value == 2) {
     let Da11 = String(document.getElementById("2a11").value);
     let Da12 = String(document.getElementById("2a12").value);
     let Db1  = String(document.getElementById("2b1").value);
     let Da21 = String(document.getElementById("2a21").value);
     let Da22 = String(document.getElementById("2a22").value);
     let Db2  = String(document.getElementById("2b2").value);
-    let res_sis = document.getElementById("sis")
+    let res_sis2x2 = document.getElementById("sis2x2")
     let valores_para_traducao = []; //lista dos números que serão convertidos
     valores_para_traducao.push(Da11, Da12, Db1, Da21, Da22, Db2); //Adiciona os valores das variáveis a serem traduzidos
     let traduzidos = simbolTrans(valores_para_traducao);
@@ -189,70 +188,117 @@ button_sis.addEventListener("click", () => {
 
     if (det2(Da11,Da12,Da21,Da22)===0){
       if ((Da11/Da21) == (Db1/Db2)){
-        res_sis.innerHTML = "Resultado: Infinito";
+        res_sis2x2.innerHTML = "Resultado: Infinito";
       }
       else{
-        res_sis.innerHTML = "Resultado: Esses numeros estão errados";
+        res_sis2x2.innerHTML = "Esses numeros estão errados";
       }
       
     }
     else{
-      console.log("teste");
-    x=det2(Db1,Da12,Db2,Da22)/det2(Da11,Da12,Da21,Da22)
-    y=det2(Da11,Db1,Da21,Db2)/det2(Da11,Da12,Da21,Da22)
-
-    res_sis.innerHTML= "Resultado: ("+ x + "," + y + ")";
-    }
-  } 
-  else {
-    let Ta11 = String(document.getElementById("3a11").value);
-    let Ta12 = String(document.getElementById("3a12").value);
-    let Ta13 = String(document.getElementById("3a13").value);
-    let Tb1  = String(document.getElementById("3b1").value);
-    let Ta21 = String(document.getElementById("3a21").value);
-    let Ta22 = String(document.getElementById("3a22").value);
-    let Ta23 = String(document.getElementById("3a23").value);
-    let Tb2  = String(document.getElementById("3b2").value);
-    let Ta31 = String(document.getElementById("3a31").value);
-    let Ta32 = String(document.getElementById("3a32").value);
-    let Ta33 = String(document.getElementById("3a33").value);
-    let Tb3  = String(document.getElementById("3b3").value);
-
-    let valores_para_traducao = []; //lista dos números que serão convertidos
-    valores_para_traducao.push(Ta11, Ta12, Ta13, Tb1, Ta21, Ta22, Ta23, Tb2, Ta31, Ta32, Ta33, Tb3); //Adiciona os valores das variáveis a serem traduzidos
-    let traduzidos = simbolTrans(valores_para_traducao);
-    Ta11 = traduzidos[0];
-    Ta12 = traduzidos[1];
-    Ta13 = traduzidos[2];
-    Tb1 = traduzidos[3];
-    Ta21 = traduzidos[4];
-    Ta22 = traduzidos[5];
-    Ta23 = traduzidos[6];
-    Tb2 = traduzidos[7];
-    Ta31 = traduzidos[8];
-    Ta32 = traduzidos[9];
-    Ta33 = traduzidos[10];
-    Tb3 = traduzidos[11];
-    
-    
-    if (det3(Ta11,Ta12,Ta13,Ta21,Ta22,Ta23,Ta31,Ta32,Ta33)===0){
-      if ((Da11/Da21)==(Db1/Db2) || (Da11/Da31)==(Db1/Db3) || (Da21/Da31)==(Db2/Db3)){
-        res_sis.innerHTML= "Resultado: Infinito";
+      x=det2(Db1,Da12,Db2,Da22)/det2(Da11,Da12,Da21,Da22)
+      y=det2(Da11,Db1,Da21,Db2)/det2(Da11,Da12,Da21,Da22)
+      if (isNaN(x) || isNaN(y)){
+        res_sis2x2.innerHTML= "Algum campo tem um numero errado"
       }
       else{
-        res_sis.innerHTML= "Resultado: Esses numeros estão errados";
+      res_sis2x2.innerHTML= `<pre>
+    |${Db1},${Da12}|
+    |${Db2},${Da22}|
+x = ------
+    |${Da11},${Da12}|
+    |${Da21},${Da22}|
+
+    |${Da11},${Db1}|
+    |${Da21},${Db2}|
+y = ------
+    |${Da11},${Da12}|
+    |${Da21},${Da22}|
+
+Resultado: (${x}, ${y})
+      </pre>`;
       }
-      
+    }
+})
+
+button_sis3x3.addEventListener("click", () => {
+  let x;
+  let y;
+  let z;
+  let Ta11 = String(document.getElementById("3a11").value);
+  let Ta12 = String(document.getElementById("3a12").value);
+  let Ta13 = String(document.getElementById("3a13").value);
+  let Tb1  = String(document.getElementById("3b1").value);
+  let Ta21 = String(document.getElementById("3a21").value);
+  let Ta22 = String(document.getElementById("3a22").value);
+  let Ta23 = String(document.getElementById("3a23").value);
+  let Tb2  = String(document.getElementById("3b2").value);
+  let Ta31 = String(document.getElementById("3a31").value);
+  let Ta32 = String(document.getElementById("3a32").value);
+  let Ta33 = String(document.getElementById("3a33").value);
+  let Tb3  = String(document.getElementById("3b3").value);
+
+  let valores_para_traducao = []; //lista dos números que serão convertidos
+  valores_para_traducao.push(Ta11, Ta12, Ta13, Tb1, Ta21, Ta22, Ta23, Tb2, Ta31, Ta32, Ta33, Tb3); //Adiciona os valores das variáveis a serem traduzidos
+  let traduzidos = simbolTrans(valores_para_traducao);
+  Ta11 = traduzidos[0];
+  Ta12 = traduzidos[1];
+  Ta13 = traduzidos[2];
+  Tb1 = traduzidos[3];
+  Ta21 = traduzidos[4];
+  Ta22 = traduzidos[5];
+  Ta23 = traduzidos[6];
+  Tb2 = traduzidos[7];
+  Ta31 = traduzidos[8];
+  Ta32 = traduzidos[9];
+  Ta33 = traduzidos[10];
+  Tb3 = traduzidos[11];
+    
+    
+  if (det3(Ta11,Ta12,Ta13,Ta21,Ta22,Ta23,Ta31,Ta32,Ta33)===0){
+    if ((Ta11/Ta21)==(Tb1/Tb2) || (Ta11/Ta31)==(Tb1/Tb3) || (Ta21/Ta31)==(Tb2/Tb3)){
+      res_sis3x3.innerHTML= "Resultado: Infinito";
     }
     else{
+      res_sis3x3.innerHTML= "Resultado: Esses numeros estão errados";
+    }
+      
+  }
+  else{
     x=det3(Tb1,Ta12,Ta13,Tb2,Ta22,Ta23,Tb3,Ta32,Ta33)/det3(Ta11,Ta12,Ta13,Ta21,Ta22,Ta23,Ta31,Ta32,Ta33)
     y=det3(Ta11,Tb1,Ta13,Ta21,Tb2,Ta23,Ta31,Tb3,Ta33)/det3(Ta11,Ta12,Ta13,Ta21,Ta22,Ta23,Ta31,Ta32,Ta33)
     z=det3(Ta11,Ta12,Tb1,Ta21,Ta22,Tb2,Ta31,Ta32,Tb3)/det3(Ta11,Ta12,Ta13,Ta21,Ta22,Ta23,Ta31,Ta32,Ta33)
 
-    res_sis3x3.innerHTML= "Resultado: ("+ x + "," + y + ","+ z + ")";
+    res_sis3x3.innerHTML= `<pre>
+    |${Tb1},${Ta12},${Ta13}|
+    |${Tb2},${Ta22},${Ta23}|
+    |${Tb3},${Ta32},${Ta33}|
+x = ------
+    |${Ta11},${Ta12},${Ta13}|
+    |${Ta21},${Ta22},${Ta23}|
+    |${Ta31},${Ta32},${Ta33}|
+
+    |${Ta11},${Tb1},${Ta13}|
+    |${Ta21},${Tb2},${Ta23}|
+    |${Ta31},${Tb3},${Ta33}|
+y = ------
+    |${Ta11},${Ta12},${Ta13}|
+    |${Ta21},${Ta22},${Ta23}|
+    |${Ta31},${Ta32},${Ta33}|
+
+    |${Ta11},${Ta12},${Tb1}|
+    |${Ta21},${Ta22},${Tb2}|
+    |${Ta31},${Ta32},${Tb3}|
+z = ------
+    |${Ta11},${Ta12},${Ta13}|
+    |${Ta21},${Ta22},${Ta23}|
+    |${Ta31},${Ta32},${Ta33}|    
+
+Resultado: (${x}, ${y}, ${z})
+      </pre>`;
     }
-  }
 })
+
 let resetSis = document.getElementById("resetarSis")
 
 resetSis.addEventListener("click", () => {

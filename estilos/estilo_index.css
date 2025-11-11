@@ -614,6 +614,7 @@ button:active {
     justify-content: center;
     border-radius: 50%;
     transition: background 0.2s;
+    box-shadow: none;
   }
 
   #menu-lateral .menu-fechar:hover {

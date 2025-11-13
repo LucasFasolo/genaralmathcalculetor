@@ -109,6 +109,9 @@ X = detX / detA = 6 / 6 = 1
 - Criar uma seção de tutoriais mais interativos para ensinar os conceitos por trás dos cálculos.
 - Implementar uma verificação dos dados inseridos mais rigorosa e explicativa.
 - Adicionar personalização de temas para melhorar a experiência do usuário.
+- Calculos de determinantes com qualquer ordem de matriz
+matriz.
+- Criação de um aplicativo para quando o usuário não tiver acesso a internet.
 
 ## Integrantes e Papéis
 

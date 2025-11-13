@@ -263,9 +263,15 @@ button_sis3x3.addEventListener("click", () => {
       res_sis3x3.innerHTML= "Resultado: Esses numeros estão errados";
     }}
   else{
+
     x=det3(Tb1,Ta12,Ta13,Tb2,Ta22,Ta23,Tb3,Ta32,Ta33)/det3(Ta11,Ta12,Ta13,Ta21,Ta22,Ta23,Ta31,Ta32,Ta33)
     y=det3(Ta11,Tb1,Ta13,Ta21,Tb2,Ta23,Ta31,Tb3,Ta33)/det3(Ta11,Ta12,Ta13,Ta21,Ta22,Ta23,Ta31,Ta32,Ta33)
     z=det3(Ta11,Ta12,Tb1,Ta21,Ta22,Tb2,Ta31,Ta32,Tb3)/det3(Ta11,Ta12,Ta13,Ta21,Ta22,Ta23,Ta31,Ta32,Ta33)
+
+    if (isNaN(x) || isNaN(y) || isNaN(z)){
+      res_sis3x3.innerHTML= "Algum campo tem um numero errado"
+    }
+    else{
 
     
 
@@ -296,7 +302,7 @@ z = ------
 
 Resultado: (${x}, ${y}, ${z})
       </pre>`;
-    }
+    }}
 })
 
 let resetSis3x3 = document.getElementById("resetarSis3x3")
@@ -371,7 +377,12 @@ button_det2x2.addEventListener("click", () => {
     DA22 = traduzidos[3];
 
     det = det2(DA11, DA12, DA21, DA22);
-    res2x2.innerHTML= "Resultado: "+det;
+    if (isNaN(det)){
+      res2x2.innerHTML= "Algum campo tem um numero errado"
+    }
+    else{
+      res2x2.innerHTML= "Resultado: "+det;
+    }
   });
 
 let button_det3x3 = document.getElementById("button_det3x3");
@@ -401,7 +412,12 @@ button_det3x3.addEventListener("click", () => {
     TA33 = traduzidos[8];
 
     det = det3(TA11, TA12, TA13, TA21, TA22, TA23, TA31, TA32, TA33);
-    res3x3.innerHTML= "Resultado: "+det;
+    if (isNaN(det)){
+      res3x3.innerHTML= "Algum campo tem um numero errado"
+    }
+    else{
+      res3x3.innerHTML= "Resultado: "+det;
+    }
   });
 
 document.querySelectorAll('input').forEach(input => {

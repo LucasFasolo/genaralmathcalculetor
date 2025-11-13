@@ -415,9 +415,7 @@ button_det3x3.addEventListener("click", () => {
     if (isNaN(det)){
       res3x3.innerHTML= "Algum campo tem um numero errado"
     }
-    else{
-      res3x3.innerHTML= "Resultado: "+det;
-    }
+    res3x3.innerHTML= "Resultado: "+det;
   });
 
 document.querySelectorAll('input').forEach(input => {

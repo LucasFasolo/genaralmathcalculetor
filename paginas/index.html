@@ -105,6 +105,9 @@
 
   <h4>💡 Dica Final:</h4>
   <p>Use o <strong>puxador de símbolos</strong> para copiar rapidamente símbolos como √, ^, log e sen! Assim você pode montar expressões completas sem precisar procurar no teclado.</p>
+
+  <h4> IMPORTANTE: <h4>
+  <p> Para representar decimal use ".", não "," </p>
 </div>
 
       </div>
@@ -165,12 +168,17 @@
   <p><strong>Sistema Possível e Determinado:</strong> Uma única solução — valores específicos para X, Y (e Z).</p>
   <p><strong>Sistema Possível e Indeterminado:</strong> Infinitas soluções — as equações são proporcionais.</p>
   <p><strong>Sistema Impossível:</strong> Sem solução — as equações são contraditórias.</p>
+  <p><strong>Sistema Errado:</strong> Sem solução — Algum campo apresenta campo com formatação incorreta.</p>
 
   <hr>
 
   <h4>💡 Dica Final:</h4>
   <p>Use o <strong>puxador de símbolos</strong> para copiar rapidamente √, ^, log e outros símbolos! Assim fica bem mais fácil montar e resolver seus sistemas sem precisar procurar no teclado.</p>
+
+  <h4> IMPORTANTE: </h4>
+  <p> Para representar decimal use ".", não ",".</p>
 </div>
+
 
       </div>
     </div>
@@ -207,6 +215,7 @@
   <!-- Seção: Ferramentas (padrão) -->
   <div id="ferramentas" class="secao-mobile ativa">
   <!-- ===================== Container principal das ferramentas ===================== -->
+   <div class="centro">
   <div id="borda_site">
 
     <!-- ===================== Botões das abas ===================== -->
@@ -254,10 +263,20 @@
             <input type="text" class="input-sistema" placeholder="b2" id="2b2">
           </div>
 
+          <!-- Botões e resultado -->
+          <div class="d-flex justify-content-center gap-2 mt-2">
+                <button class="botao-calcular" id="Button_sis2x2">Calcular Sistema</button>
+                <button id="resetarSis2x2" class="botoesResetar">
+                  <img class="icones" src="../imagens/resetar_icone.png">
+                </button>
+          </div>
+
+          <div class="caixa-resultado mt-3" id="sis2x2">Resultado:</div>
+
         </div>
 
         <!-- Sistema 3x3 -->
-        <div id="inputs-3x3-sistema" class="container-sistema d-none">
+        <div id="inputs-3x3-sistema" class=" mx-auto container-sistema d-none">
           <div class="linha-sistema my-1">
             <input type="text" class="input-sistema" placeholder="a11" id="3a11">
             <span>X</span> <span>+</span>
@@ -285,19 +304,17 @@
             <span>Z</span> <span>=</span>
             <input type="text" class="input-sistema" placeholder="b3" id="3b3">
           </div>
-        </div>
-
-        <!-- Botões e resultado -->
-        <div class="d-flex justify-content-center gap-2 mt-2">
-          <button class="botao-calcular" id="Button_sis">Calcular Sistema</button>
-          <button id="resetarSis" class="botoesResetar">
-            <img class="icones" src="../imagens/resetar_icone.png">
-          </button>
-        </div>
-
-        <div class="caixa-resultado mt-3" id="sis">Resultado:</div>
-      </div>
-
+          <!-- Botões e resultado -->
+          <div class="d-flex justify-content-center gap-2 mt-2">
+                <button class="botao-calcular" id="Button_sis3x3">Calcular Sistema</button>
+                <button id="resetarSis3x3" class="botoesResetar">
+                  <img class="icones" src="../imagens/resetar_icone.png">
+                </button>
+          </div>
+          
+          <div class="caixa-resultado mt-3" id="sis3x3">Resultado:</div>
+</div>
+</div>
       <!-- ===== Aba Determinante ===== -->
       <div id="determinante" class="conteudo-aba">
 
@@ -362,7 +379,9 @@
 
     </div> <!-- /conteúdo-abas -->
   </div> <!-- /borda_site -->
-  </div>
+</div> <!-- /centro -->
+</div>
+
 
   <!-- Seção: Tutorial Determinante -->
   <div id="determinante-tutorial" class="secao-mobile">
@@ -425,10 +444,12 @@
   
   <h4>💡 Dica Final:</h4>
   <p>Use o <strong>menu de símbolos</strong> para copiar rapidamente símbolos como √, ^, log e sen! Assim você pode montar expressões completas sem precisar procurar no teclado.</p>
-</div>
 
-    </div>
-  </div>
+  <h4>IMPORTANTE: </h4>
+  <p> Para representar decimal use ".", não "," </p>
+</div>
+</div>
+</div>
 
   <!-- Seção: Tutorial Sistema Linear -->
   <div id="sistema-tutorial" class="secao-mobile">
@@ -481,16 +502,18 @@
   <p><strong>Sistema Possível e Determinado:</strong> Uma única solução — valores específicos para X, Y (e Z).</p>
   <p><strong>Sistema Possível e Indeterminado:</strong> Infinitas soluções — as equações são proporcionais.</p>
   <p><strong>Sistema Impossível:</strong> Sem solução — as equações são contraditórias.</p>
+  <p><strong>Sistema Errado:</strong> Sem solução — Algum campo apresenta campo com formatação incorreta.</p>
 
   <hr>
 
   <h4>💡 Dica Final:</h4>
   <p>Use o <strong>puxador de símbolos</strong> para copiar rapidamente √, ^, log e outros símbolos! Assim fica bem mais fácil montar e resolver seus sistemas sem precisar procurar no teclado.</p>
 
-      </div>
-    </div>
-  </div>
+  <h4> IMPORTANTE: <h4>
+  <p> Para representar decimal use ".", não ",".</p>
 
+  </div>
+      </div>    </div>
   <!-- Seção: Símbolos Matemáticos -->
   <div id="simbolos-menu" class="secao-mobile">
     <div class="conteudo-mobile">
@@ -511,6 +534,7 @@
       </div>
     </div>
   </div>
+</div>
 
   <!-- ===================== Script personalizado ===================== -->
   <script src="../scripts/script_index.js"></script>

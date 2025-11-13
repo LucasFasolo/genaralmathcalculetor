@@ -1,9 +1,8 @@
 # Calculadoras Matemáticas Interativas
 
 ## Objetivo do Site
-O site foi criado como um trabalho de integração entre professores de Matemática e Desenvolvimento Web. O objetivo principal é disponibilizar **calculadoras de sistemas lineares 2x2 e 3x3** para uso em provas escolares pelos criadores e também para que outras pessoas possam aprender matemática de forma prática e mais visual.
+O site foi criado como um trabalho de integração entre Matemática e Desenvolvimento Web. O objetivo principal é disponibilizar **calculadoras de sistemas lineares e matrizes 2x2 e 3x3** para uso em provas escolares pelos criadores e também para que outras pessoas possam aprender matemática de forma prática e mais visual.
 
-O site permite que os usuários **entendam a lógica por trás dos cálculos**, não apenas vejam o resultado final.
 
 
 ## Lógica dos Cálculos em JavaScript
